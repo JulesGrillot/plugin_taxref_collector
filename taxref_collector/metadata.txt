@@ -1,0 +1,25 @@
+[general]
+name=Taxref Collector
+about=This plugin allows the user to find Taxref occurences depending on species name or GBIF id.
+category=Database
+hasProcessingProvider=False
+description=Extends QGIS with revolutionary features that every single GIS end-users was expected (or not)!
+icon=resources/images/default_icon.png
+tags=enviro taxref, gbif
+
+# credits and contact
+author=Jules GRILLOT
+email=jules.grillot@fdn.fr
+homepage=https://github.com/Juletaxref_collector
+repository=https://github.com/Juletaxref_collector
+tracker=https://github.com/Juletaxref_collector/issues/
+
+# experimental flag
+deprecated=False
+experimental=True
+qgisMinimumVersion=3.28
+qgisMaximumVersion=3.99
+
+# versioning
+version=0.1.0
+changelog=
