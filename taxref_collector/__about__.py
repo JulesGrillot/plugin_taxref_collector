@@ -63,7 +63,9 @@ __plugin_md__: dict = plugin_metadata_as_dict()
 __author__: str = __plugin_md__.get("general").get("author")
 __copyright__: str = "2025 - {0}, {1}".format(date.today().year, __author__)
 __email__: str = __plugin_md__.get("general").get("email")
-__icon_path__: Path = DIR_PLUGIN_ROOT.resolve() / __plugin_md__.get("general").get("icon")
+__icon_path__: Path = DIR_PLUGIN_ROOT.resolve() / __plugin_md__.get("general").get(
+    "icon"
+)
 __keywords__: list = [
     t.strip() for t in __plugin_md__.get("general").get("repository").split("tags")
 ]
@@ -88,6 +90,17 @@ __version_info__: tuple = tuple(
         for num in __version__.replace("-", ".", 1).split(".")
     ]
 )
+
+__service_uri__: str = __plugin_md__.get("service").get("gbif_uri")
+__service_metadata__: str = __plugin_md__.get("service").get("metadata")
+__service_credit_gbif__: str = __plugin_md__.get("service").get("producer_gbif")
+__service_credit_col__: str = __plugin_md__.get("service").get("producer_col")
+__service_logo_gbif__: Path = DIR_PLUGIN_ROOT.resolve() / __plugin_md__.get(
+    "service"
+).get("gbif_logo")
+__service_logo_col__: Path = DIR_PLUGIN_ROOT.resolve() / __plugin_md__.get(
+    "service"
+).get("col_logo")
 
 # #############################################################################
 # ##### Main #######################
