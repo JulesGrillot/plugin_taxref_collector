@@ -29,8 +29,10 @@ from qgis.PyQt.QtWidgets import (
 from taxref_collector.__about__ import (
     __service_credit_col__,
     __service_credit_gbif__,
+    __service_credit_inpn__,
     __service_logo_col__,
     __service_logo_gbif__,
+    __service_logo_inpn__,
     __service_metadata__,
     __title__,
     __uri_homepage__,
@@ -87,6 +89,14 @@ class TaxrefCollectorDialog(QDialog):
         self.producer_col_label.setIcon(icon)
         self.producer_col_label.setIconSize(QSize(60, 60))
         self.source_doc_layout.addWidget(self.producer_col_label, 0, 1, 3, 3)
+        pixmap = QPixmap(str(__service_logo_inpn__))
+        self.producer_inpn_label = QToolButton(self)
+        self.producer_inpn_label.setObjectName(__service_credit_inpn__)
+        icon = QIcon()
+        icon.addPixmap(pixmap)
+        self.producer_inpn_label.setIcon(icon)
+        self.producer_inpn_label.setIconSize(QSize(60, 60))
+        self.source_doc_layout.addWidget(self.producer_inpn_label, 0, 2, 3, 3)
 
         widget = QWidget()
         self.doc_layout = QVBoxLayout()
@@ -102,7 +112,7 @@ class TaxrefCollectorDialog(QDialog):
         self.metadata_button.setText(self.tr("Metadata"))
         self.doc_layout.addWidget(self.metadata_button)
         widget.setLayout(self.doc_layout)
-        self.source_doc_layout.addWidget(widget, 0, 2, 1, -1)
+        self.source_doc_layout.addWidget(widget, 0, 3, 1, -1)
 
         self.layout.addLayout(self.source_doc_layout)
         self.layout.insertSpacing(100, 25)
@@ -231,6 +241,7 @@ class TaxrefCollectorDialog(QDialog):
         # Ui signals
         self.producer_gbif_label.clicked.connect(self.open_url)
         self.producer_col_label.clicked.connect(self.open_url)
+        self.producer_inpn_label.clicked.connect(self.open_url)
         self.metadata_button.clicked.connect(self.open_url)
         self.documentation_button.clicked.connect(self.open_url)
         self.select_layer_combo_box.layerChanged.connect(self.check_valid)

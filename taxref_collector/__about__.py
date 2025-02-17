@@ -95,12 +95,16 @@ __service_uri__: str = __plugin_md__.get("service").get("gbif_uri")
 __service_metadata__: str = __plugin_md__.get("service").get("metadata")
 __service_credit_gbif__: str = __plugin_md__.get("service").get("producer_gbif")
 __service_credit_col__: str = __plugin_md__.get("service").get("producer_col")
+__service_credit_inpn__: str = __plugin_md__.get("service").get("producer_inpn")
 __service_logo_gbif__: Path = DIR_PLUGIN_ROOT.resolve() / __plugin_md__.get(
     "service"
 ).get("gbif_logo")
 __service_logo_col__: Path = DIR_PLUGIN_ROOT.resolve() / __plugin_md__.get(
     "service"
 ).get("col_logo")
+__service_logo_inpn__: Path = DIR_PLUGIN_ROOT.resolve() / __plugin_md__.get(
+    "service"
+).get("inpn_logo")
 
 # #############################################################################
 # ##### Main #######################

@@ -30,5 +30,7 @@ gbif_uri=https://www.gbif.org/api/species
 metadata=https://www.checklistbank.org/about/introduction
 producer_gbif=https://www.gbif.org/what-is-gbif
 producer_col=https://www.catalogueoflife.org/about/catalogueoflife
+producer_inpn=https://inpn.mnhn.fr/informations/quest-ce-que-l-inpn
 gbif_logo=resources/images/gbif_logo.png
 col_logo=resources/images/col_logo.jpg
+inpn_logo=resources/images/inpn_logo.jpg

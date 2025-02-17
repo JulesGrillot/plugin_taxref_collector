@@ -77,33 +77,42 @@ class GetTaxrefFromGBIF(QObject):
                 res = json.loads(data_request)
                 if "results" in res:
                     for elem in res["results"]:
-                        if elem["title"] == "TAXREF":
-                            taxref_id = elem["_relatedTaxon"]["taxonID"]
-                            taxref_name = elem["_relatedTaxon"]["scientificName"]
-                            self.layer.startEditing()
-                            for feature_id in features_id:
-                                self.layer.changeAttributeValue(
-                                    feature_id,
-                                    self.layer.fields().indexFromName("cd_nom"),
-                                    taxref_id,
-                                )
-                                self.layer.changeAttributeValue(
-                                    feature_id,
-                                    self.layer.fields().indexFromName("taxref_name"),
-                                    taxref_name,
-                                )
-                                self.layer.changeAttributeValue(
-                                    feature_id,
-                                    self.layer.fields().indexFromName("taxref_url"),
-                                    "https://inpn.mnhn.fr/espece/cd_nom/{cd_nom}".format(
-                                        cd_nom=taxref_id
-                                    ),
-                                )
+                        if "TAXREF" in [
+                            elem["title"] for elem in res["results"] if "title" in elem
+                        ]:
+                            if elem["title"] == "TAXREF":
+                                taxref_id = elem["_relatedTaxon"]["taxonID"]
+                                taxref_name = elem["_relatedTaxon"]["scientificName"]
+                                self.layer.startEditing()
+                                for feature_id in features_id:
+                                    self.layer.changeAttributeValue(
+                                        feature_id,
+                                        self.layer.fields().indexFromName("cd_nom"),
+                                        taxref_id,
+                                    )
+                                    self.layer.changeAttributeValue(
+                                        feature_id,
+                                        self.layer.fields().indexFromName(
+                                            "taxref_name"
+                                        ),
+                                        taxref_name,
+                                    )
+                                    self.layer.changeAttributeValue(
+                                        feature_id,
+                                        self.layer.fields().indexFromName("taxref_url"),
+                                        "https://inpn.mnhn.fr/espece/cd_nom/{cd_nom}".format(
+                                            cd_nom=taxref_id
+                                        ),
+                                    )
 
-                            self.layer.commitChanges()
-                            self.layer.triggerRepaint()
+                                self.layer.commitChanges()
+                                self.layer.triggerRepaint()
+                            else:
+                                pass
                         else:
                             print("ERREUR no TAXREF")
+                else:
+                    pass
                 if self.pending_downloads == 0:
                     self.project.addMapLayer(self.layer)
                     self.finished_dl.emit()
